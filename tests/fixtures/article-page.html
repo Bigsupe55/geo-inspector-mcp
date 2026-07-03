@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sample Article</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Example News",
+        "sameAs": ["https://twitter.com/example", "https://en.wikipedia.org/wiki/Example"]
+      },
+      {
+        "@type": "WebSite",
+        "name": "Example News Site"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["NewsArticle"],
+    "headline": "Something happened",
+    "name": "Something happened"
+  }
+  </script>
+  <script type="application/ld+json">
+  { this is broken json
+  </script>
+</head>
+<body><p>Article body.</p></body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "name": "geo-inspector-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that inspects a website's AI-search readiness: AI crawler access, llms.txt, schema markup, and indexing directives",
+  "type": "module",
+  "bin": {
+    "geo-inspector-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --target node20 --clean",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "seo",
+    "geo",
+    "ai-search",
+    "generative-engine-optimization",
+    "robots-txt",
+    "llms-txt",
+    "schema-org"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "node-html-parser": "^8.0.4",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  }
+}

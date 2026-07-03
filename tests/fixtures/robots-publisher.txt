@@ -1,0 +1,19 @@
+# Publisher-style robots.txt modeled on common news-site patterns
+User-agent: *
+Disallow: /search
+Allow: /search/about
+Disallow: /admin/
+
+User-agent: GPTBot
+User-agent: CCBot
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+Sitemap: https://example-publisher.com/sitemap.xml
+Sitemap: https://example-publisher.com/news-sitemap.xml
