@@ -148,7 +148,7 @@ structuredContent:
 }
 ```
 
-Neither file present is a normal (not error) result: presence is exactly what the tool reports.
+Neither file present is a normal (not error) result: presence is exactly what the tool reports. A file that exceeds the 2 MB fetch cap is likewise reported as `present: true, oversized: true` with a warning rather than as an error, since llms-full.txt is routinely larger than the cap and hitting it proves the file exists (found during live verification against docs.anthropic.com).
 
 ### 3. detect_schema_markup
 

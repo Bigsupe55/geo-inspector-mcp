@@ -61,6 +61,25 @@ describe("fetchLlmsTxt", () => {
     expect(sc.files.find((f) => f.file === "llms.txt")?.valid).toBe(false);
   });
 
+  it("reports an oversized file as present instead of erroring", async () => {
+    const fetcher = stubFetcher({
+      "https://example.com/llms.txt": okResponse("x", { status: 404 }),
+      "https://example.com/llms-full.txt": {
+        ok: false,
+        error: { kind: "too_large", message: "Response exceeded the 2 MB size limit" },
+      },
+    });
+    const result = await fetchLlmsTxt(fetcher, { url: "example.com" });
+    expect(result.isError).toBeUndefined();
+    const sc = result.structuredContent as {
+      files: Array<{ file: string; present: boolean; oversized?: boolean }>;
+    };
+    const full = sc.files.find((f) => f.file === "llms-full.txt");
+    expect(full?.present).toBe(true);
+    expect(full?.oversized).toBe(true);
+    expect(result.content[0].text).toContain("2 MB");
+  });
+
   it("returns isError when the origin is unreachable", async () => {
     const result = await fetchLlmsTxt(stubFetcher({}), { url: "unreachable.example" });
     expect(result.isError).toBe(true);

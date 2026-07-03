@@ -15,6 +15,19 @@ export async function fetchLlmsTxt(fetcher: Fetcher, input: { url: string }): Pr
     const url = `${origin}/${file}`;
     const res = await fetcher(url);
     if (!res.ok) {
+      if (res.error.kind === "too_large") {
+        // The file exists and is bigger than the fetch cap. For llms-full.txt in
+        // particular that is normal, so presence is the finding, not an error.
+        files.push({
+          file,
+          url,
+          present: true,
+          oversized: true,
+          warnings: ["File exceeds the 2 MB fetch limit; it exists but was not validated."],
+        });
+        summaryLines.push(`${file}: present (larger than 2 MB, not validated)`);
+        continue;
+      }
       return errorResult(`Could not fetch ${url}: ${res.error.message}`);
     }
     if (res.status !== 200) {
