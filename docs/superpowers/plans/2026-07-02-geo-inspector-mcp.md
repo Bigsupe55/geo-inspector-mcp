@@ -2461,6 +2461,17 @@ git commit -m "docs: README and MIT license"
 
 ---
 
+## Live verification log
+
+Date: 2026-07-03. All calls made through `npx @modelcontextprotocol/inspector --cli node dist/index.js` against the built bundle.
+
+- `tools/list`: returns exactly check_robots_txt, fetch_llms_txt, detect_schema_markup, check_meta_directives
+- `check_robots_txt url=nytimes.com`: 15/15 AI crawlers blocked, matches NYT's published policy; sitemaps surfaced
+- `fetch_llms_txt url=docs.anthropic.com`: first run exposed a design bug (llms-full.txt exceeds the 2 MB cap and the tool errored); fixed so oversized files report `present: true, oversized: true`, test added, spec updated. Re-run: llms.txt present and valid (title "Anthropic Developer Documentation", 3 sections), llms-full.txt present and oversized
+- `detect_schema_markup url=https://www.bbc.com/news`: 1 JSON-LD block (WebPage), AI-relevant gaps flagged
+- `check_meta_directives url=https://en.wikipedia.org/wiki/Web_crawler`: indexable, followable, `max-image-preview:standard` captured, no AI restrictions
+- Claude Code: `claude mcp add geo-inspector -- node C:/Users/Nick/geo-inspector-mcp/dist/index.js` then `claude mcp list` reports "geo-inspector: ... - Connected" (local scope, this project directory). Remove with `claude mcp remove geo-inspector` if unwanted.
+
 ## Ship-time steps (require Nick, not part of this plan's execution)
 
 1. Choose the GitHub account, create the public repo, add the remote. Pushing requires Nick's explicit say-so.
