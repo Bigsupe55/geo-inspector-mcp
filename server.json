@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.bigsupe55/geo-inspector-mcp",
+  "title": "GEO Inspector",
+  "description": "Inspect a website's AI-search readiness: AI crawler access in robots.txt, llms.txt presence and validity, JSON-LD schema markup, and indexing meta directives",
+  "repository": {
+    "url": "https://github.com/Bigsupe55/geo-inspector-mcp",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "geo-inspector-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

@@ -1,7 +1,12 @@
 {
   "name": "geo-inspector-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "io.github.bigsupe55/geo-inspector-mcp",
   "description": "MCP server that inspects a website's AI-search readiness: AI crawler access, llms.txt, schema markup, and indexing directives",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bigsupe55/geo-inspector-mcp.git"
+  },
   "type": "module",
   "bin": {
     "geo-inspector-mcp": "dist/index.js"
