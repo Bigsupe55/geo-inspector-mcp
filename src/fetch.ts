@@ -23,7 +23,7 @@ export interface FetchOptions {
 
 export type Fetcher = (url: string, options?: FetchOptions) => Promise<FetchResult>;
 
-const USER_AGENT = "geo-inspector-mcp/0.1.1 (+https://github.com/Bigsupe55/geo-inspector-mcp)";
+const USER_AGENT = "geo-inspector-mcp/0.1.2 (+https://github.com/Bigsupe55/geo-inspector-mcp)";
 
 export const httpFetch: Fetcher = async (url, options = {}) => {
   const { timeoutMs = 10_000, maxBytes = 2_000_000, maxRedirects = 5 } = options;
