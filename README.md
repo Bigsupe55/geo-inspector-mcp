@@ -4,9 +4,9 @@
 [![MCP Registry](https://img.shields.io/badge/MCP%20Registry-io.github.Bigsupe55%2Fgeo--inspector--mcp-blue)](https://registry.modelcontextprotocol.io)
 [![license](https://img.shields.io/npm/l/geo-inspector-mcp)](LICENSE)
 
-Inspect any website's AI-search readiness from Claude (or any MCP client): which AI crawlers it blocks, whether it publishes llms.txt, what schema markup it ships, and how its indexing directives are set.
+**An MCP server that gives an AI assistant four tools for inspecting how a website presents itself to other AI systems**: which AI crawlers it blocks, whether it publishes llms.txt, what schema markup it ships, and how its indexing directives are set.
 
-Published on npm and listed in the official [MCP Registry](https://registry.modelcontextprotocol.io) as `io.github.Bigsupe55/geo-inspector-mcp`.
+Published on npm and listed in the official [MCP Registry](https://registry.modelcontextprotocol.io) as `io.github.Bigsupe55/geo-inspector-mcp`. Works with Claude Code, Claude Desktop, or any MCP client.
 
 ## Why this exists
 
@@ -51,6 +51,31 @@ Then ask things like: "Which AI crawlers does nytimes.com block?" or "Does strip
 | `check_meta_directives` | Meta robots tags (including noai/noimageai and bot-specific tags) and X-Robots-Tag headers | "Is this page indexable?" |
 
 Every tool returns a readable summary plus structured JSON (`structuredContent`) for programmatic use.
+
+## How it is built
+
+The interesting part of an MCP server is not the tools, it is the contract around them.
+
+**Every tool returns two things.** A readable summary for the model to reason over, and
+`structuredContent` for anything downstream that needs to compute. That split is what
+lets a separate scoring layer ([ai-visibility-audit](https://github.com/Bigsupe55/ai-visibility-audit))
+derive deterministic numbers from the same call the model is reading in prose. The model
+never has to parse its own tool output back into data.
+
+**Parsers are pure functions.** `robots.txt`, `llms.txt`, JSON-LD, and meta directives
+each parse in isolation, with no I/O and fixture-based tests. A tool handler is a thin
+shell: fetch, parse, format. This is what makes the behavior testable without a network,
+and it is why the test suite runs with no fixtures to record and no site to hit.
+
+**All network access goes through one helper.** A single fetch path with a size cap, a
+redirect limit, and a timeout. An MCP server runs inside someone else's agent loop with
+their API budget attached, so a tool that can hang or stream an unbounded response is a
+tool that can ruin a session. One choke point means those limits cannot be forgotten in
+a new tool.
+
+**robots.txt parsing follows RFC 9309** rather than a regex, because the whole value of
+the tool is being right about whether a specific crawler is allowed. Longest-match wins,
+user-agent groups merge, and `Allow` can override a broader `Disallow`.
 
 ## Development
 
