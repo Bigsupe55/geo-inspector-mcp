@@ -1,8 +1,12 @@
 # geo-inspector-mcp
 
+[![npm](https://img.shields.io/npm/v/geo-inspector-mcp)](https://www.npmjs.com/package/geo-inspector-mcp)
+[![MCP Registry](https://img.shields.io/badge/MCP%20Registry-io.github.Bigsupe55%2Fgeo--inspector--mcp-blue)](https://registry.modelcontextprotocol.io)
+[![license](https://img.shields.io/npm/l/geo-inspector-mcp)](LICENSE)
+
 Inspect any website's AI-search readiness from Claude (or any MCP client): which AI crawlers it blocks, whether it publishes llms.txt, what schema markup it ships, and how its indexing directives are set.
 
-<!-- demo GIF goes here: record a Claude Code session calling the tools -->
+Published on npm and listed in the official [MCP Registry](https://registry.modelcontextprotocol.io) as `io.github.Bigsupe55/geo-inspector-mcp`.
 
 ## Why this exists
 
@@ -59,6 +63,10 @@ npx @modelcontextprotocol/inspector node dist/index.js   # poke it interactively
 
 Parsers are pure functions with fixture-based tests; all HTTP goes through one capped, redirect-limited fetch helper.
 
+## Related
+
+[ai-visibility-audit](https://github.com/Bigsupe55/ai-visibility-audit) is the workflow layer on top of this one: it orchestrates these four tools into a scored, client-ready report. This repo is the raw tools.
+
 ## License
 
-MIT
+MIT, see [LICENSE](LICENSE).
