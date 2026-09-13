@@ -21,7 +21,10 @@
     "build": "tsup src/index.ts --format esm --target node20 --clean",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build",
+    "demo:capture": "node scripts/capture-demo.mjs",
+    "demo:render": "python scripts/render-demo.py",
+    "demo": "npm run build && npm run demo:capture && npm run demo:render"
   },
   "keywords": [
     "mcp",

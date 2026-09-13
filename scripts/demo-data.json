@@ -1,0 +1,38 @@
+{
+  "_comment": "Verbatim tool output captured by scripts/capture-demo.mjs. Regenerate with `npm run build && npm run demo:capture`. Only `question` is authored.",
+  "capturedAt": "2026-09-13T18:38:11.814Z",
+  "server": {
+    "name": "geo-inspector-mcp",
+    "version": "0.1.0"
+  },
+  "scenes": [
+    {
+      "question": "Which AI crawlers does nytimes.com block?",
+      "call": "check_robots_txt(url: \"https://www.nytimes.com\")",
+      "output": [
+        "robots.txt for https://www.nytimes.com (path checked: /)",
+        "Blocked AI crawlers (15/15): GPTBot [OpenAI], OAI-SearchBot [OpenAI], ChatGPT-User [OpenAI], ClaudeBot [Anthropic], Claude-SearchBot [Anthropic], Claude-User [Anthropic], anthropic-ai [Anthropic], PerplexityBot [Perplexity], Perplexity-User [Perplexity], Google-Extended [Google], CCBot [Common Crawl], Bytespider [ByteDance], Applebot-Extended [Apple], meta-externalagent [Meta], cohere-ai [Cohere]",
+        "Allowed AI crawlers (0/15): none",
+        "Sitemaps: https://www.nytimes.com/sitemaps/new/news.xml.gz, https://www.nytimes.com/sitemaps/new/sitemap.xml.gz, https://www.nytimes.com/sitemaps/new/collections.xml.gz, https://www.nytimes.com/sitemaps/new/video.xml.gz, https://www.nytimes.com/sitemaps/new/cooking.xml.gz, https://www.nytimes.com/sitemaps/new/recipe-collects.xml.gz, https://www.nytimes.com/sitemaps/new/regions.xml, https://www.nytimes.com/sitemaps/new/best-sellers.xml, https://www.nytimes.com/sitemaps/new/subscription-landing-pages.xml, https://www.nytimes.com/sitemaps/new/weather.xml.gz, https://www.nytimes.com/sitemaps/new/espanol.xml.gz, https://www.nytimes.com/sitemaps/new/espanol-collects.xml.gz, https://www.nytimes.com/wirecutter/sitemapindex.xml, https://www.nytimes.com/athletic/sitemap-videos-index.xml, https://www.nytimes.com/athletic/sitemap-authors.xml, https://www.nytimes.com/athletic/sitemap-verticals.xml, https://www.nytimes.com/athletic/sitemap-teams.xml, https://www.nytimes.com/athletic/sitemap-cities.xml, https://www.nytimes.com/athletic/sitemap-players.xml, https://www.nytimes.com/athletic/sitemap-tags.xml, https://www.nytimes.com/athletic/sitemap-stats.xml, https://www.nytimes.com/athletic/sitemap-schedule.xml, https://www.nytimes.com/athletic/sitemap-roster.xml, https://www.nytimes.com/athletic/sitemap.xml, https://www.nytimes.com/games-assets/v2/assets/sitemap/games.xml"
+      ]
+    },
+    {
+      "question": "Does docs.anthropic.com publish an llms.txt?",
+      "call": "fetch_llms_txt(url: \"https://docs.anthropic.com\")",
+      "output": [
+        "llms.txt check for https://docs.anthropic.com",
+        "llms.txt: present, valid (2 warnings), title: Anthropic Developer Documentation, 3 section(s)",
+        "llms-full.txt: present (larger than 2 MB, not validated)"
+      ]
+    },
+    {
+      "question": "What structured data does stripe.com ship?",
+      "call": "detect_schema_markup(url: \"https://stripe.com\")",
+      "output": [
+        "JSON-LD on https://stripe.com/: 1 block(s), types: WebSite, Organization",
+        "AI-relevant types not found: Article, FAQPage, BreadcrumbList, Person",
+        "Entities with sameAs disambiguation: Stripe"
+      ]
+    }
+  ]
+}

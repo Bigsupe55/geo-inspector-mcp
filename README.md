@@ -11,7 +11,8 @@ Published on npm and listed in the official [MCP Registry](https://registry.mode
 ![geo-inspector-mcp inspecting three sites](docs/demo.gif)
 
 <sub>Tool output above is verbatim from a live run against nytimes.com, docs.anthropic.com,
-and stripe.com. The sitemap list is abbreviated to a count; nothing else is edited.</sub>
+and stripe.com, captured by driving the built server over MCP stdio. The sitemap list is
+collapsed to a count; nothing else is edited. Regenerate with <code>npm run demo</code>.</sub>
 
 ## Why this exists
 
@@ -92,6 +93,25 @@ npx @modelcontextprotocol/inspector node dist/index.js   # poke it interactively
 ```
 
 Parsers are pure functions with fixture-based tests; all HTTP goes through one capped, redirect-limited fetch helper.
+
+### Regenerating the demo GIF
+
+```bash
+npm run demo          # build, capture, render
+```
+
+Or the steps separately:
+
+```bash
+npm run demo:capture  # drives the built server over MCP stdio, writes scripts/demo-data.json
+npm run demo:render   # renders docs/demo.gif from that JSON (needs: pip install Pillow)
+```
+
+`demo-data.json` is committed, so rendering works offline and the GIF's claims stay
+auditable: diff it against what the tools return today. The capture script mocks
+nothing, so if a site changes its robots.txt, the demo changes with it. The only
+authored text in the pipeline is the human question line; the sites to inspect are
+configured at the top of `scripts/capture-demo.mjs`.
 
 ## Related
 
