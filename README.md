@@ -8,6 +8,11 @@
 
 Published on npm and listed in the official [MCP Registry](https://registry.modelcontextprotocol.io) as `io.github.Bigsupe55/geo-inspector-mcp`. Works with Claude Code, Claude Desktop, or any MCP client.
 
+![geo-inspector-mcp inspecting three sites](docs/demo.gif)
+
+<sub>Tool output above is verbatim from a live run against nytimes.com, docs.anthropic.com,
+and stripe.com. The sitemap list is abbreviated to a count; nothing else is edited.</sub>
+
 ## Why this exists
 
 AI assistants are becoming a primary way people find and cite content, and sites signal their intent to AI systems through a handful of plumbing files: robots.txt rules for AI crawlers, the emerging llms.txt standard, schema.org structured data, and meta directives. Checking those by hand means juggling curl, a robots.txt parser in your head, and view-source. This server turns all of it into questions you can just ask Claude.
